@@ -22,7 +22,7 @@ namespace checkers
     {
         public int Row { get; set; }
         public int Col { get; set; }
-        public Checker Checker { get; set; }
+        public Checker? Checker { get; set; }
         public bool IsPlayable => (Row + Col) % 2 == 0;  // только тёмные клетки "игровые"
     }
 

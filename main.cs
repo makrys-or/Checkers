@@ -10,8 +10,7 @@ namespace checkers
             var board = new Board();
             var logic = new Logic();
 
-
-            System.Console.WriteLine($"Кол-во белых: {board.countWhite}.\nКол-во черных: {board.countBlack}.");
+            // System.Console.WriteLine($"Кол-во белых: {board.countWhite}.\nКол-во черных: {board.countBlack}.");
 
             while (board.countWhite != 0 && board.countBlack != 0)
             {
