@@ -159,7 +159,7 @@ namespace checkers
                                 {
                                     Output = true;
                                 }
-                                else System.Console.WriteLine("На пути несколько шашек.");//ИСПРАВИТЬ
+                                else System.Console.WriteLine("На пути несколько шашек.");
                             }
                             else{System.Console.WriteLine("Клетка занята");}
                         }
@@ -175,7 +175,7 @@ namespace checkers
             return (Output, VictimCells);
         }
 
-        // Проверка на возможнсть рубки обычной шашкиаарвватровнооачптрат авоыеркпт  обкноофруркео
+        // Проверка на возможнсть рубки обычной шашки
         public bool CheckActKill(Board board, string[] actions)
         {
             bool Output = false;
@@ -275,7 +275,7 @@ namespace checkers
                     VictimCells.Add((i, SusSC));
                     System.Console.WriteLine("DEBAG:На пути дамки обнаружена шашка");
 
-                    if (board.Cells[i, SusSC].Checker!.Colour == SubCell.Checker!.Colour)//через свою шашку ходиить нельзя
+                    if (board.Cells[i, SusSC].Checker!.Colour == SubCell.Checker!.Colour)//через свою шашку ходить нельзя
                     {
                         Out = false;
                         break;

@@ -6,7 +6,7 @@ namespace checkers
 {
     class Utils
     {
-        public static void CheckersCheck(Board board)
+        public static void CheckersPrint(Board board)
         {    
             string[] chars = new string[8] {"   a", "    b", "    c", "    d", "    e", "    f", "    g", "    h"};
 

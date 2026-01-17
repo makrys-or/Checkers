@@ -14,7 +14,7 @@ namespace checkers
 
             while (board.countWhite != 0 && board.countBlack != 0)
             {
-                Utils.CheckersCheck(board);
+                Utils.CheckersPrint(board);
 
                 if (logic.Turn == PieceColor.White)
                     System.Console.WriteLine("Ход белых [ o ]");
