@@ -234,8 +234,6 @@ namespace checkers
             }
             else System.Console.WriteLine("Выбраны не игровые клетки");
 
-            System.Console.WriteLine("Output = " + Output);  
-            
             return Output;
         } 
 

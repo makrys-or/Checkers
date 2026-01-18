@@ -27,22 +27,14 @@ namespace checkers
                 // ВВОД В ЦИКЛ, ЧТОБЫ ПОВТОРЯЛСЯ ПРИ ОШИБКЕ
                 while (true)
                 {
-                    System.Console.WriteLine("Введите ход в формате: {начальная_клетка(b6)} {конечная_клетка(a5)}");
+                    System.Console.WriteLine("Введите ход в формате: {начальная_клетка} {конечная_клетка}. Пример:b6 a5");
                     Act = Console.ReadLine(); 
                     if (Act != null)
                     {
                         string[] action = Act.Split(" ");
-                        if (action.Length != 2)
+                        if (action.Length != 2 || logic.Action(board, Act!) == false)
                         {
-                            System.Console.WriteLine("logic.Action(board, Act!) = " + logic.Action(board, Act!));
                             System.Console.WriteLine("Ошибка ввода, попробуйте еще раз");
-                        }
-                        else break;
-                        if (logic.Action(board, Act!) == false)
-                        {
-                            System.Console.WriteLine("logic.Action(board, Act!) = " + logic.Action(board, Act!));
-                            System.Console.WriteLine("Ошибка ввода, попробуйте еще раз");
-                            
                         }
                         else break;    
                     }
@@ -50,15 +42,12 @@ namespace checkers
 
                 try
                 {
-                    logic.Action(board, Act!);
                     logic.SwapTurn();
                 }
                 catch (NullReferenceException)
                 {
                    System.Console.WriteLine("Клетка пуста");
-                }
-                // logic.Action(board, Act!);
-                // logic.SwapTurn();            
+                }         
             }
 
             if (board.countWhite == 0)
