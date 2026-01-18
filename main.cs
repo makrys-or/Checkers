@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
 namespace checkers
@@ -21,13 +22,9 @@ namespace checkers
                 if (logic.Turn == PieceColor.Black)
                     System.Console.WriteLine("Ход черных [ x ]");
                 
-                /* ЗАПРОС ВВОДА ХОДА
-                СОВЕРШЕНИЕ ХОДА(ЕСЛИ ВОЗМОЖНО), ЕСЛИ НЕТ, ТО ПОВТОРИТЬ ВВОД
-                */
-                
                 string? Act;
 
-                // СДЕЛАТЬ ВВОД В ЦИКЛ, ЧТОБЫ ПОВТОРЯЛСЯ ВВОД
+                // ВВОД В ЦИКЛ, ЧТОБЫ ПОВТОРЯЛСЯ ПРИ ОШИБКЕ
                 while (true)
                 {
                     System.Console.WriteLine("Введите ход в формате: {начальная_клетка(b6)} {конечная_клетка(a5)}");
@@ -35,12 +32,12 @@ namespace checkers
                     if (Act != null)
                     {
                         string[] action = Act.Split(" ");
-                        if (action.Length != 2)
+                        if (action.Length != 2 || logic.Action(board, Act!) == false)
                         {
                             System.Console.WriteLine("Ошибка ввода, попробуйте еще раз");
                             continue;
                         }
-                        break;
+                        else break;
                     }  
                 } 
                 logic.Action(board, Act!);

@@ -23,8 +23,10 @@ namespace checkers
             }
         }
 
-        public void Action(Board board, string Act)
+        public bool Action(Board board, string Act)
         {
+            bool Check = false;
+
             string[] actions = Act.Split(" ");//[b2; c3] 
             int SubFirstCoord = Convert.ToInt32(actions[0][1]) - '0';
             int SubSecondCoord = Utils.LetterToColumn(Convert.ToChar(actions[0][0]));
@@ -35,26 +37,28 @@ namespace checkers
             {
                 // Проверка правильности хода 
                 if(CheckActMove(board, actions).Item1)
-
                 {
-                    var SubCell = board.Cells[SubFirstCoord, SubSecondCoord];
+                    Check = true;
 
                     var from = board.Cells[SubFirstCoord, SubSecondCoord];
                     var to = board.Cells[ObjFirstCoord, ObjSecondCoord];
                     to.Checker = from.Checker;
                     from.Checker = null;
 
-                    if ((to.Checker!.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
+                    if ((to.Checker.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
                     {
                         to.Checker.IsKing = true;
                     }
                 }
+                else return Check;
             }
 
             else if (Math.Abs(SubFirstCoord - ObjFirstCoord) == 2) // если рубка шашкой
             {
                 if(CheckActKill(board, actions))
                 {
+                    Check = true;
+
                     int VictimFirstCoord = Math.Min(SubFirstCoord, ObjFirstCoord) + 1;
                     int VictimSecondCoord = Math.Min(SubSecondCoord, ObjSecondCoord) + 1;
 
@@ -68,17 +72,20 @@ namespace checkers
                     from.Checker = null;
                     VictimCell.Checker = null;
 
-                    if ((to.Checker!.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
+                    if ((to.Checker.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
                     {
                         to.Checker.IsKing = true;
                     }
                 }
+                else return Check;
             }
 
             else 
             {
                 if(CheckActMove(board, actions).Item1)
                 {
+                    Check = true;
+                
                     var VictimCells = CheckActMove(board, actions).Item2;
                     var SubCell = board.Cells[SubFirstCoord, SubSecondCoord];
                     var ObjCell = board.Cells[ObjFirstCoord, ObjSecondCoord];
@@ -102,7 +109,9 @@ namespace checkers
                     }
                     
                 }
+                else return Check;
             } 
+            return Check;
         }
 
         // Проверка на возможность перемещения
@@ -122,7 +131,7 @@ namespace checkers
 
             if (SubCell.IsPlayable && ObjCell.IsPlayable)//играбельные клетки
             {
-                if (SubCell.Checker!.Colour == Turn)//правильная очередь хода
+                if (SubCell.Checker.Colour == Turn)//правильная очередь хода
                 {
 
                     if (SubCell.Checker.IsKing == false)//если обычная шашка
@@ -195,7 +204,7 @@ namespace checkers
 
             if (SubCell.IsPlayable && ObjCell.IsPlayable)
             {
-                if (SubCell.Checker!.Colour == Turn)
+                if (SubCell.Checker.Colour == Turn)
                 {
                     if (SubCell.Checker.IsKing == false)
                     {
@@ -275,7 +284,7 @@ namespace checkers
                     VictimCells.Add((i, SusSC));
                     System.Console.WriteLine("DEBAG:На пути дамки обнаружена шашка");
 
-                    if (board.Cells[i, SusSC].Checker!.Colour == SubCell.Checker!.Colour)//через свою шашку ходить нельзя
+                    if (board.Cells[i, SusSC].Checker.Colour == SubCell.Checker.Colour)//через свою шашку ходить нельзя
                     {
                         Out = false;
                         break;
