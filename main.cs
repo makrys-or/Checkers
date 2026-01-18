@@ -32,17 +32,33 @@ namespace checkers
                     if (Act != null)
                     {
                         string[] action = Act.Split(" ");
-                        if (action.Length != 2 || logic.Action(board, Act!) == false)
+                        if (action.Length != 2)
                         {
+                            System.Console.WriteLine("logic.Action(board, Act!) = " + logic.Action(board, Act!));
                             System.Console.WriteLine("Ошибка ввода, попробуйте еще раз");
-                            continue;
                         }
                         else break;
-                    }  
-                } 
-                logic.Action(board, Act!);
+                        if (logic.Action(board, Act!) == false)
+                        {
+                            System.Console.WriteLine("logic.Action(board, Act!) = " + logic.Action(board, Act!));
+                            System.Console.WriteLine("Ошибка ввода, попробуйте еще раз");
+                            
+                        }
+                        else break;    
+                    }
+                }
 
-                logic.SwapTurn();
+                try
+                {
+                    logic.Action(board, Act!);
+                    logic.SwapTurn();
+                }
+                catch (NullReferenceException)
+                {
+                   System.Console.WriteLine("Клетка пуста");
+                }
+                // logic.Action(board, Act!);
+                // logic.SwapTurn();            
             }
 
             if (board.countWhite == 0)

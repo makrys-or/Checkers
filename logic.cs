@@ -45,11 +45,12 @@ namespace checkers
                     to.Checker = from.Checker;
                     from.Checker = null;
 
-                    if ((to.Checker.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
+                    if ((to.Checker!.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
                     {
                         to.Checker.IsKing = true;
                     }
                 }
+                
                 else return Check;
             }
 
@@ -72,11 +73,12 @@ namespace checkers
                     from.Checker = null;
                     VictimCell.Checker = null;
 
-                    if ((to.Checker.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
+                    if ((to.Checker!.Colour == PieceColor.White && ObjFirstCoord == 1) || (to.Checker.Colour == PieceColor.Black && ObjFirstCoord == 8))//проверка на становление дамкой
                     {
                         to.Checker.IsKing = true;
                     }
                 }
+
                 else return Check;
             }
 
@@ -131,7 +133,7 @@ namespace checkers
 
             if (SubCell.IsPlayable && ObjCell.IsPlayable)//играбельные клетки
             {
-                if (SubCell.Checker.Colour == Turn)//правильная очередь хода
+                if (SubCell.Checker!.Colour == Turn)//правильная очередь хода
                 {
 
                     if (SubCell.Checker.IsKing == false)//если обычная шашка
@@ -204,7 +206,7 @@ namespace checkers
 
             if (SubCell.IsPlayable && ObjCell.IsPlayable)
             {
-                if (SubCell.Checker.Colour == Turn)
+                if (SubCell.Checker!.Colour == Turn)
                 {
                     if (SubCell.Checker.IsKing == false)
                     {
@@ -220,17 +222,19 @@ namespace checkers
                                     }
                                     else System.Console.WriteLine("Ты зачем своего рубишь?");
                                 }
-                                else{System.Console.WriteLine("Клетка занята или нет жертвы");}
+                                else System.Console.WriteLine("Клетка занята или нет жертвы");
                             }
-                            else{System.Console.WriteLine("Шашка не может так ходить");}
+                            else System.Console.WriteLine("Шашка не может так ходить");
                         }
-                        else{System.Console.WriteLine("Обычная шашка не может так ходить");}
+                        else System.Console.WriteLine("Обычная шашка не может так ходить");
                     }
                     
                 }
-                else{System.Console.WriteLine("Ход не тем цветом");}
+                else System.Console.WriteLine("Ход не тем цветом");
             }
-            else{System.Console.WriteLine("Выбраны не игровые клетки");}
+            else System.Console.WriteLine("Выбраны не игровые клетки");
+
+            System.Console.WriteLine("Output = " + Output);  
             
             return Output;
         } 
@@ -284,7 +288,7 @@ namespace checkers
                     VictimCells.Add((i, SusSC));
                     System.Console.WriteLine("DEBAG:На пути дамки обнаружена шашка");
 
-                    if (board.Cells[i, SusSC].Checker.Colour == SubCell.Checker.Colour)//через свою шашку ходить нельзя
+                    if (board.Cells[i, SusSC].Checker!.Colour == SubCell.Checker!.Colour)//через свою шашку ходить нельзя
                     {
                         Out = false;
                         break;
