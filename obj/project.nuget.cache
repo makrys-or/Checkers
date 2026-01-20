@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Cxz3tFsPnUk=",
+  "dgSpecHash": "T4+nc7s2Nx8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\max\\Desktop\\soft\\proga\\C#\\Шашки\\C#.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\max\\Desktop\\soft\\proga\\C#\\Chekers\\C#.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\max\\.nuget\\packages\\microsoft.netcore.app.ref\\9.0.12\\microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
+    "C:\\Users\\max\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\9.0.12\\microsoft.windowsdesktop.app.ref.9.0.12.nupkg.sha512",
+    "C:\\Users\\max\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\9.0.12\\microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512",
+    "C:\\Users\\max\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\9.0.12\\microsoft.netcore.app.host.win-x64.9.0.12.nupkg.sha512"
+  ],
   "logs": []
 }
